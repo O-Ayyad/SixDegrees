@@ -3,8 +3,46 @@
     <meta charset="UTF-8">
     <title>Six Degrees</title>
 </head>
+
 <body>
     <h1>Welcome to Six Degrees</h1>
     <p>This is the <b>homepage.</b></p>
+
+    <form id="gameForm">
+        <input type="radio" name="game" value="League of Legends" Checked> League of Legends
+        <input type="radio" name="game" value="Valorant"> Valorant
+        <br><br>
+
+        <label>Your Riot ID:</label>
+        <input type="text" id="localUser" name="localUser">
+        <br><br>
+
+        <label>Target Riot ID:</label>
+        <input type="text" id="targetUser" name="targetUser">
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    <p id="output"></p>
 </body>
+<script>
+document.getElementById("gameForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const localUser = document.getElementById("localUser").value;
+    const targetUser = document.getElementById("targetUser").value;
+    const game = document.querySelector('input[name="game"]:checked')?.value;
+    
+    outputBlock= document.getElementById("output")
+    if(!localUser){
+        outputBlock.innerText = `Input your Riot ID`
+        return;
+    }
+    if(!targetUser){
+        outputBlock.innerText = `Input target Riot ID`
+        return;
+    }
+    document.getElementById("output").innerText = `You want to link ${localUser} to ${targetUser} in ${game}`;
+});
+</script>
 </html>
